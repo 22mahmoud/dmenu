@@ -16,10 +16,11 @@ static char normfgcolor[] = "#bbbbbb";
 static char normbgcolor[] = "#222222";
 static char selfgcolor[]  = "#eeeeee";
 static char selbgcolor[]  = "#005577";
+static char normfgfuzzy[]  =  "#ffc978";
 static char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeSelHighlight] = { selbgcolor, selfgcolor},
-	[SchemeNormHighlight] = { "#ffc978", "#222222" },
+	[SchemeSelHighlight] = { selfgcolor, selbgcolor},
+	[SchemeNormHighlight] = { normfgfuzzy, normbgcolor },
 	[SchemeNorm] = { normfgcolor, normbgcolor },
 	[SchemeSel]  = { selfgcolor,  selbgcolor  },
 	[SchemeOut]  = { "#000000",   "#00ffff" },
@@ -39,7 +40,8 @@ static const char worddelimiters[] = " ";
 ResourcePref resources[] = {
         { "background",         STRING,  &normbgcolor },
         { "foreground",         STRING,  &normfgcolor },
-        { "color11",             STRING,  &selbgcolor },
+        { "color11",            STRING,  &selbgcolor },
         { "color7",             STRING,  &selfgcolor },
-	{ "prompt",      STRING, &prompt },
+        { "color3",             STRING,  &normfgfuzzy },
+	{ "prompt",		STRING,  &prompt },
 };
