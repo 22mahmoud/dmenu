@@ -7,7 +7,7 @@ static int fuzzy = 1;                      /* -F  option; if 0, dmenu doesn't us
 static const char *fonts[] = { 
   "monospace:pixelsize=13:antialias=true:autohint=true",
   "Noto Color Emoji:pixelsize=13:antialias=true:autohint=true",
-  "Tajawal:pixelsize=13:antialias=true:autohint=true"
+  "Noto Sans Arabic:pixelsize=13:antialias=true:autohint=true",
 };
 
 static char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
