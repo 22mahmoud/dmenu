@@ -6,7 +6,7 @@ static int fuzzy = 1;                      /* -F  option; if 0, dmenu doesn't us
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = { 
   "monospace:pixelsize=13:antialias=true:autohint=true",
-  "Noto Color Emoji:pixelsize=13:antialias=true:autohint=true",
+  "JoyPixels:pixelsize=10:antialias=true:autohint=true",
   "Noto Sans Arabic:pixelsize=13:antialias=true:autohint=true",
 };
 
