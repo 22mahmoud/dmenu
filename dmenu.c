@@ -147,25 +147,22 @@ cistrstr(const char *h, const char *n)
 static void
 drawhighlights(struct item *item, int x, int y, int maxw)
 {
-  int i, indent;
+	int i, indent;
 	char *highlight;
 	char c;
 
-	char *itemtext = item->text;
-
-	if (!(strlen(itemtext) && strlen(text)))
+	if (!(strlen(item->text) && strlen(text)))
 		return;
 
 	drw_setscheme(drw, scheme[item == sel
 	                   ? SchemeSelHighlight
 	                   : SchemeNormHighlight]);
-	for (i = 0, highlight = itemtext; *highlight && text[i];) {
-		if (!fstrncmp(&(*highlight), &text[i], 1))
-		{
+	for (i = 0, highlight = item->text; *highlight && text[i];) {
+		if (*highlight == text[i]) {
 			/* get indentation */
 			c = *highlight;
 			*highlight = '\0';
-			indent = TEXTW(itemtext);
+			indent = TEXTW(item->text);
 			*highlight = c;
 
 			/* highlight character */
@@ -176,7 +173,7 @@ drawhighlights(struct item *item, int x, int y, int maxw)
 				x + indent - (lrpad / 2),
 				y,
 				MIN(maxw - indent, TEXTW(highlight) - lrpad),
-				bh, 0, highlight, 0, True
+				bh, 0, highlight, 0, False
 			);
 			highlight[1] = c;
 			i++;
@@ -190,7 +187,6 @@ static int
 drawitem(struct item *item, int x, int y, int w)
 {
 	int r;
-
 	if (item == sel)
 		drw_setscheme(drw, scheme[SchemeSel]);
 	else if (item->out)
@@ -198,8 +194,8 @@ drawitem(struct item *item, int x, int y, int w)
 	else
 		drw_setscheme(drw, scheme[SchemeNorm]);
 
-
 	r = drw_text(drw, x, y, w, bh, lrpad / 2, item->text, 0, True);
+	drawhighlights(item, x, y, w);
 	return r;
 }
 
