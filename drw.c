@@ -176,7 +176,7 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 		return 0;
 
 	if (!render) {
-		w = ~w;
+		w = invert ? invert : ~invert;
 	} else {
 		XSetForeground(drw->dpy, drw->gc, drw->scheme[invert ? ColFg : ColBg].pixel);
 		XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, h);
@@ -244,6 +244,15 @@ drw_font_getwidth(Drw *drw, const char *text, Bool markup)
 	if (!drw || !drw->font || !text)
 		return 0;
 	return drw_text(drw, 0, 0, 0, 0, 0, text, 0, markup);
+}
+
+unsigned int
+drw_font_getwidth_clamp(Drw *drw, const char *text, unsigned int n, Bool markup)
+{
+	unsigned int tmp = 0;
+	if (drw && drw->font && text && n)
+		tmp = drw_text(drw, 0, 0, 0, 0, 0, text, n, markup);
+	return MIN(n, tmp);
 }
 
 void
