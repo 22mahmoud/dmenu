@@ -258,10 +258,8 @@ drw_text(Drw *drw, int x, int y, unsigned int w, unsigned int h, unsigned int lp
 	usedfont = drw->fonts;
 	if (!ellipsis_width && render)
 		ellipsis_width = drw_fontset_getwidth(drw, "...");
-	if (!invalid_width) {
-		invalid_width = -1; /* stop infinite recursion */
+	if (!invalid_width && render)
 		invalid_width = drw_fontset_getwidth(drw, invalid);
-	}
 	while (1) {
 		ew = ellipsis_len = utf8err = utf8charlen = utf8strlen = 0;
 		utf8str = text;
